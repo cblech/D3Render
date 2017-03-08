@@ -100,18 +100,18 @@ class RenderPannel extends JPanel {
         @Override
         public void run() {
             while (true) {
+                long LastFrameTemp = System.currentTimeMillis();
                 rp.sceneAction();
                 rp.repaint();
 
-                long LastFrameTemp = System.currentTimeMillis();
-                rp.fps = (int) (1000 / ((System.currentTimeMillis() - LastFrameTime) + 1));
+                rp.fps = (int) (1000.0 / ((LastFrameTemp - LastFrameTime) + 0.0000001));
                 LastFrameTime = LastFrameTemp;
                 if (rp.jf.db != null) {
                     rp.jf.db.setFps(rp.fps);
                 }
 
                 try {
-                    Thread.sleep(1000 / 60);
+                    Thread.sleep(-System.currentTimeMillis() + LastFrameTemp + (1000 / 60));
 
                 } catch (InterruptedException ex) {
                 }
