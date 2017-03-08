@@ -1,0 +1,63 @@
+#m3d v:0.1
+- Kommentare werden mit einem "-" eingeleitet.
+- Um punkte festzulegen muss eine zeile "#points" heißen.
+#points
+
+- Hintere Ebene
+
+h1 -.25 -.5 .05
+h2 -.15 -.5 .05
+h3 +.15 -.5 .05
+h4 +.25 -.5 .05
+
+h5 -.05 .5 .05
+h6 +.05 .5 .05
+h7 0 .3 .05
+
+- Vordere Ebene
+
+v1 -.25 -.5 -.05
+v2 -.15 -.5 -.05
+v3 +.15 -.5 -.05
+v4 +.25 -.5 -.05
+
+v5 -.05 .5 -.05
+v6 +.05 .5 -.05
+v7 0 .3 -.05
+
+
+#lines
+
+- Hintere Verbindungen
+h1 h2
+h3 h4
+
+h2 h7
+h7 h3
+
+h1 h5
+h5 h6
+h6 h4
+
+- Vordere Verbindungen
+
+v1 v2
+v3 v4
+
+v2 v7
+v7 v3
+
+v1 v5
+v5 v6
+v6 v4
+
+-Verbindungen beider Ebenen
+
+v1 h1
+v2 h2
+v3 h3
+v4 h4
+v5 h5
+v6 h6
+v7 h7
+

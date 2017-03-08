@@ -1,0 +1,130 @@
+#m3d v:0.1
+- Kommentare werden mit einem "-" eingeleitet.
+- Um punkte festzulegen muss eine zeile "#points" heißen.
+#points
+
+- Hintere Ebene
+
+v1 -.25 -.5 .05
+v2 +.15 -.5 .05
+v3 +.25 -.5 .05
+v4 -.25 -.4 .05
+v5 +.15 -.4 .05
+v6 +.25 -.4 .05
+
+v7 -.25 .35 .05
+v8 -.15 .35 .05
+v9 .15 .35 .05
+v10 .25 .35 .05
+
+v11 -.1 .4 .05
+v12 .1 .4 .05
+v13 -.1 .5 .05
+v14 .1 .5 .05
+
+v15 -.25 .25 .05
+v16 -.15 .25 .05
+
+- Vordere Ebene
+
+h1 -.25 -.5 -.05
+h2 +.15 -.5 -.05
+h3 +.25 -.5 -.05
+h4 -.25 -.4 -.05
+h5 +.15 -.4 -.05
+h6 +.25 -.4 -.05
+
+h7 -.25 .35 -.05
+h8 -.15 .35 -.05
+h9 .15 .35 -.05
+h10 .25 .35 -.05
+
+h11 -.1 .4 -.05
+h12 .1 .4 -.05
+h13 -.1 .5 -.05
+h14 .1 .5 -.05
+
+h15 -.25 .25 -.05
+h16 -.15 .25 -.05
+
+
+
+#lines
+
+- Vordere Verbindungen
+v1 v2
+v2 v3
+v4 v5
+v5 v6
+v1 v4
+v2 v5
+v3 v6
+
+v5 v9
+v6 v10
+v7 v8
+v9 v10
+
+v8 v11
+v11 v12
+v12 v9
+
+v7 v13
+v13 v14
+v14 v10
+
+v11 v13
+v12 v14
+
+v7 v15
+v15 v16
+v16 v8
+
+- Hintere Verbindungen
+
+h1 h2
+h2 h3
+h4 h5
+h5 h6
+h1 h4
+h2 h5
+h3 h6
+
+h5 h9
+h6 h10
+h7 h8
+h9 h10
+
+h8 h11
+h11 h12
+h12 h9
+
+h7 h13
+h13 h14
+h14 h10
+
+h11 h13
+h12 h14
+
+h7 h15
+h15 h16
+h16 h8
+
+-Zwischen Verbindungen
+
+v1 h1
+v2 h2
+v3 h3
+v4 h4
+v5 h5
+v6 h6
+v7 h7
+v8 h8
+v9 h9
+v10 h10
+v11 h11
+v12 h12
+v13 h13
+v14 h14
+v15 h15
+v16 h16
