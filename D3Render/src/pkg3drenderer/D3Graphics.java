@@ -5,8 +5,6 @@
  */
 package pkg3drenderer;
 
-import java.util.ArrayList;
-
 /**
  *
  * @author jonathan
@@ -14,17 +12,16 @@ import java.util.ArrayList;
 public class D3Graphics {
 
     NormalisedGraphics ng;
-    private double cammeraZPos = -2;
+    private static double cammeraZPos = -2;
 
     public D3Graphics(NormalisedGraphics ng) {
         this.ng = ng;
     }
 
-    public void setCammeraZPos(double cammeraZPos) {
-        this.cammeraZPos = cammeraZPos;
+    public static void setCammeraZPos(double cammeraZPos) {
+        D3Graphics.cammeraZPos = cammeraZPos;
     }
     
-
     public void drawPerspectiveLine(D3line d) {
         drawPerspectiveLine(d.startPoint.x, d.startPoint.y, d.startPoint.z, d.endPoint.x, d.endPoint.y, d.endPoint.z);
     }
@@ -43,7 +40,7 @@ public class D3Graphics {
 //        D3vec p7 = new D3vec(d.toPoint.x, d.toPoint.y, d.toPoint.z);
 //        D3vec p8 = new D3vec(d.toPoint.x, d.fromPoint.y, d.toPoint.z);
 
-        for (D3line d3line : d.connections) {
+        for (D3line d3line : d.getLines()) {
             drawPerspectiveLine(d3line);
         }
     }

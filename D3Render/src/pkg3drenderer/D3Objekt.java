@@ -8,10 +8,7 @@ package pkg3drenderer;
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
-import java.util.List;
 import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -23,7 +20,10 @@ import java.util.logging.Logger;
 public class D3Objekt {
 
     ArrayList<D3vec> points = new ArrayList<>();
-    ArrayList<D3line> connections = new ArrayList<>();
+    ArrayList<Vec2> connections = new ArrayList<>();
+
+    D3vec positoin = new D3vec(0, 0, 0);
+    private D3vec rotation = new D3vec(0, 0, 0);
 
     private enum addS {
         Idel, Points, Lines
@@ -138,14 +138,91 @@ public class D3Objekt {
             } else if (b == null) {
                 System.out.println("point: " + tln.b + " does not exist.");
             } else {
-                connections.add(new D3line(a, b));
+                connections.add(new Vec2(points.indexOf(a), points.indexOf(b)));
             }
-
         }
-
     }
 
     public void addZrot(double r) {
+        rotation.z += r;
+    }
+
+    public void addYrot(double r) {
+        rotation.y += r;
+    }
+
+    public void addXrot(double r) {
+        rotation.x += r;
+    }
+
+    public void setZrot(double r) {
+        rotation.z = r;
+    }
+
+    public void setYrot(double r) {
+        rotation.y = r;
+    }
+
+    public void setXrot(double r) {
+        rotation.x = r;
+    }
+
+    public ArrayList<D3line> getLines() {
+        ArrayList<D3line> displayedLines = new ArrayList<>();
+        ArrayList<D3vec> displayedPoints = new ArrayList<>();
+
+        for (D3vec point : points) {
+            displayedPoints.add(calculateRotationOffset(point));
+        }
+        
+        for (D3vec displayedPoint : displayedPoints) {
+            displayedPoint.x+=positoin.x;
+            displayedPoint.y+=positoin.y;
+            displayedPoint.z+=positoin.z;
+        }
+        
+        for (Vec2 connection : connections) {
+            displayedLines.add(new D3line(displayedPoints.get(connection.a), displayedPoints.get(connection.b)));
+        }
+
+        return displayedLines;
+    }
+
+    private D3vec calculateRotationOffset(D3vec p) {
+        D3vec point = new D3vec(p.x, p.y, p.z);
+
+        //y-axis
+        double nx = point.x * Math.cos(rotation.y) + point.z * Math.sin(rotation.y);
+        double ny = point.y;
+        double nz = point.z * Math.cos(rotation.y) - point.x * Math.sin(rotation.y);
+        point.x = nx;
+        point.y = ny;
+        point.z = nz;
+
+        //x-axis
+        nx = point.x;
+        ny = point.z * Math.sin(rotation.x) + point.y * Math.cos(rotation.x);
+        nz = point.z * Math.cos(rotation.x) - point.y * Math.sin(rotation.x);
+        point.x = nx;
+        point.y = ny;
+        point.z = nz;
+
+        //z-axis
+        nx = point.x * Math.cos(rotation.z) - point.y * Math.sin(rotation.z);
+        ny = point.x * Math.sin(rotation.z) + point.y * Math.cos(rotation.z);
+        nz = point.z;
+        point.x = nx;
+        point.y = ny;
+        point.z = nz;
+
+        return point;
+    }
+
+    private void calculatePositionOffset() {
+
+    }
+
+    private void prosessZrot(double r) {
         for (D3vec point : points) {
             double nx = point.x * Math.cos(r) - point.y * Math.sin(r);
             double ny = point.x * Math.sin(r) + point.y * Math.cos(r);
@@ -156,7 +233,7 @@ public class D3Objekt {
         }
     }
 
-    public void addYrot(double r) {
+    private void prosessYrot(double r) {
         for (D3vec point : points) {
             double nx = point.x * Math.cos(r) + point.z * Math.sin(r);
             double ny = point.y;
@@ -167,7 +244,7 @@ public class D3Objekt {
         }
     }
 
-    public void addXrot(double r) {
+    private void prosessXrot(double r) {
         for (D3vec point : points) {
             double nx = point.x;
             double ny = point.z * Math.sin(r) + point.y * Math.cos(r);

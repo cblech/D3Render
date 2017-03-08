@@ -16,7 +16,7 @@ public class MyFrame extends javax.swing.JFrame {
     int width = 900;
     int height = 900;
 
-    boolean debugging = true;
+    boolean debugging = false;
 
     public MyFrame() {
         if (debugging) {
@@ -28,7 +28,7 @@ public class MyFrame extends javax.swing.JFrame {
         }
         initComponents();
         add(rp);
-        setResizable(true);
+        setResizable(false);
         setSize(width, height + 26);
         setLocationRelativeTo(null);
         rp.setBounds(0, 0, width, height);

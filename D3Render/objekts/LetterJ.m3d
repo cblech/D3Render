@@ -1,7 +1,12 @@
 #m3d v:0.1
-- Kommentare werden mit einem "-" eingeleitet.
+- Eine m3d Datei muss mit der Zeile "#m3d v:0.1" beginnen.
+- Kommentare werden mit einem "-" am Zeilenanfang eingeleitet.
+- Kommentare können nicht später beginnen.
 - Um punkte festzulegen muss eine zeile "#points" heißen.
 #points
+- Punkte werden mit volgender Syntax bestimmt
+- [Punkt Name] [x] [y] [z]  (Jeweils mit einem Leerzeichen getrennt)
+
 
 - Hintere Ebene
 
@@ -48,8 +53,11 @@ h15 -.25 .25 -.05
 h16 -.15 .25 -.05
 
 
-
+- Um Verbindungen bzw. die Linien festzulegen muss eine zeile "#lines" heißen.
 #lines
+- Linien werden mit volgender Syntax bestimmt
+- [Von Punkt Name] [Zu Punkt Name]  (Jeweils mit einem Leerzeichen getrennt)
+- Die Linie wird zwischen den beiden Punkten gezogen
 
 - Vordere Verbindungen
 v1 v2

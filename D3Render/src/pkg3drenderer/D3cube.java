@@ -25,20 +25,18 @@ public class D3cube extends D3Objekt {
         points.add(new D3vec(toPoint.x, toPoint.y, toPoint.z));
         points.add(new D3vec(toPoint.x, fromPoint.y, toPoint.z));
 
-        connections.add(new D3line(points.get(0), points.get(1)));
-        connections.add(new D3line(points.get(1), points.get(2)));
-        connections.add(new D3line(points.get(2), points.get(3)));
-        connections.add(new D3line(points.get(3), points.get(0)));
-        
-        connections.add(new D3line(points.get(0), points.get(4)));
-        connections.add(new D3line(points.get(1), points.get(5)));
-        connections.add(new D3line(points.get(2), points.get(6)));
-        connections.add(new D3line(points.get(3), points.get(7)));
-        
-        connections.add(new D3line(points.get(4), points.get(5)));
-        connections.add(new D3line(points.get(5), points.get(6)));
-        connections.add(new D3line(points.get(6), points.get(7)));
-        connections.add(new D3line(points.get(7), points.get(4)));
+        connections.add(new Vec2(0, 1));
+        connections.add(new Vec2(1, 2));
+        connections.add(new Vec2(2, 3));
+        connections.add(new Vec2(3, 0));
+        connections.add(new Vec2(0, 4));
+        connections.add(new Vec2(1, 5));
+        connections.add(new Vec2(2, 6));
+        connections.add(new Vec2(3, 7));
+        connections.add(new Vec2(4, 5));
+        connections.add(new Vec2(5, 6));
+        connections.add(new Vec2(6, 7));
+        connections.add(new Vec2(7, 4));
     }
 
 }

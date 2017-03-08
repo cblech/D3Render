@@ -55,80 +55,80 @@ public class D3LetterJ extends D3Objekt {
         points.add(new D3vec(-.15, .25, -.05));
 
         //hintere ebene
-        connections.add(new D3line(points.get(0), points.get(1)));
-        connections.add(new D3line(points.get(1), points.get(2)));
-        connections.add(new D3line(points.get(3), points.get(4)));
-        connections.add(new D3line(points.get(4), points.get(5)));
-        connections.add(new D3line(points.get(0), points.get(3)));
-        connections.add(new D3line(points.get(1), points.get(4)));
-        connections.add(new D3line(points.get(2), points.get(5)));
-
-        connections.add(new D3line(points.get(4), points.get(8)));
-        connections.add(new D3line(points.get(5), points.get(9)));
-        connections.add(new D3line(points.get(6), points.get(7)));
-        connections.add(new D3line(points.get(8), points.get(9)));
-
-        connections.add(new D3line(points.get(7), points.get(10)));
-        connections.add(new D3line(points.get(10), points.get(11)));
-        connections.add(new D3line(points.get(11), points.get(8)));
-
-        connections.add(new D3line(points.get(6), points.get(12)));
-        connections.add(new D3line(points.get(12), points.get(13)));
-        connections.add(new D3line(points.get(13), points.get(9)));
-
-        connections.add(new D3line(points.get(10), points.get(12)));
-        connections.add(new D3line(points.get(11), points.get(13)));
-
-        connections.add(new D3line(points.get(6), points.get(14)));
-        connections.add(new D3line(points.get(14), points.get(15)));
-        connections.add(new D3line(points.get(15), points.get(7)));
-
-        //vordere ebene
-        connections.add(new D3line(points.get(16), points.get(17)));
-        connections.add(new D3line(points.get(17), points.get(18)));
-        connections.add(new D3line(points.get(19), points.get(20)));
-        connections.add(new D3line(points.get(20), points.get(21)));
-        connections.add(new D3line(points.get(16), points.get(19)));
-        connections.add(new D3line(points.get(17), points.get(20)));
-        connections.add(new D3line(points.get(18), points.get(21)));
-
-        connections.add(new D3line(points.get(20), points.get(24)));
-        connections.add(new D3line(points.get(21), points.get(25)));
-        connections.add(new D3line(points.get(22), points.get(23)));
-        connections.add(new D3line(points.get(24), points.get(25)));
-
-        connections.add(new D3line(points.get(23), points.get(26)));
-        connections.add(new D3line(points.get(26), points.get(27)));
-        connections.add(new D3line(points.get(27), points.get(24)));
-
-        connections.add(new D3line(points.get(22), points.get(28)));
-        connections.add(new D3line(points.get(28), points.get(29)));
-        connections.add(new D3line(points.get(29), points.get(25)));
-
-        connections.add(new D3line(points.get(26), points.get(28)));
-        connections.add(new D3line(points.get(27), points.get(29)));
-
-        connections.add(new D3line(points.get(22), points.get(30)));
-        connections.add(new D3line(points.get(30), points.get(31)));
-        connections.add(new D3line(points.get(31), points.get(23)));
-
-        //zwei ebenen verbinden
-        connections.add(new D3line(points.get(0), points.get(16)));
-        connections.add(new D3line(points.get(1), points.get(17)));
-        connections.add(new D3line(points.get(2), points.get(18)));
-        connections.add(new D3line(points.get(3), points.get(19)));
-        connections.add(new D3line(points.get(4), points.get(20)));
-        connections.add(new D3line(points.get(5), points.get(21)));
-        connections.add(new D3line(points.get(6), points.get(22)));
-        connections.add(new D3line(points.get(7), points.get(23)));
-        connections.add(new D3line(points.get(8), points.get(24)));
-        connections.add(new D3line(points.get(9), points.get(25)));
-        connections.add(new D3line(points.get(10), points.get(26)));
-        connections.add(new D3line(points.get(11), points.get(27)));
-        connections.add(new D3line(points.get(12), points.get(28)));
-        connections.add(new D3line(points.get(13), points.get(29)));
-        connections.add(new D3line(points.get(14), points.get(30)));
-        connections.add(new D3line(points.get(15), points.get(31)));
+//        connections.add(new D3line(points.get(0), points.get(1)));
+//        connections.add(new D3line(points.get(1), points.get(2)));
+//        connections.add(new D3line(points.get(3), points.get(4)));
+//        connections.add(new D3line(points.get(4), points.get(5)));
+//        connections.add(new D3line(points.get(0), points.get(3)));
+//        connections.add(new D3line(points.get(1), points.get(4)));
+//        connections.add(new D3line(points.get(2), points.get(5)));
+//
+//        connections.add(new D3line(points.get(4), points.get(8)));
+//        connections.add(new D3line(points.get(5), points.get(9)));
+//        connections.add(new D3line(points.get(6), points.get(7)));
+//        connections.add(new D3line(points.get(8), points.get(9)));
+//
+//        connections.add(new D3line(points.get(7), points.get(10)));
+//        connections.add(new D3line(points.get(10), points.get(11)));
+//        connections.add(new D3line(points.get(11), points.get(8)));
+//
+//        connections.add(new D3line(points.get(6), points.get(12)));
+//        connections.add(new D3line(points.get(12), points.get(13)));
+//        connections.add(new D3line(points.get(13), points.get(9)));
+//
+//        connections.add(new D3line(points.get(10), points.get(12)));
+//        connections.add(new D3line(points.get(11), points.get(13)));
+//
+//        connections.add(new D3line(points.get(6), points.get(14)));
+//        connections.add(new D3line(points.get(14), points.get(15)));
+//        connections.add(new D3line(points.get(15), points.get(7)));
+//
+//        //vordere ebene
+//        connections.add(new D3line(points.get(16), points.get(17)));
+//        connections.add(new D3line(points.get(17), points.get(18)));
+//        connections.add(new D3line(points.get(19), points.get(20)));
+//        connections.add(new D3line(points.get(20), points.get(21)));
+//        connections.add(new D3line(points.get(16), points.get(19)));
+//        connections.add(new D3line(points.get(17), points.get(20)));
+//        connections.add(new D3line(points.get(18), points.get(21)));
+//
+//        connections.add(new D3line(points.get(20), points.get(24)));
+//        connections.add(new D3line(points.get(21), points.get(25)));
+//        connections.add(new D3line(points.get(22), points.get(23)));
+//        connections.add(new D3line(points.get(24), points.get(25)));
+//
+//        connections.add(new D3line(points.get(23), points.get(26)));
+//        connections.add(new D3line(points.get(26), points.get(27)));
+//        connections.add(new D3line(points.get(27), points.get(24)));
+//
+//        connections.add(new D3line(points.get(22), points.get(28)));
+//        connections.add(new D3line(points.get(28), points.get(29)));
+//        connections.add(new D3line(points.get(29), points.get(25)));
+//
+//        connections.add(new D3line(points.get(26), points.get(28)));
+//        connections.add(new D3line(points.get(27), points.get(29)));
+//
+//        connections.add(new D3line(points.get(22), points.get(30)));
+//        connections.add(new D3line(points.get(30), points.get(31)));
+//        connections.add(new D3line(points.get(31), points.get(23)));
+//
+//        //zwei ebenen verbinden
+//        connections.add(new D3line(points.get(0), points.get(16)));
+//        connections.add(new D3line(points.get(1), points.get(17)));
+//        connections.add(new D3line(points.get(2), points.get(18)));
+//        connections.add(new D3line(points.get(3), points.get(19)));
+//        connections.add(new D3line(points.get(4), points.get(20)));
+//        connections.add(new D3line(points.get(5), points.get(21)));
+//        connections.add(new D3line(points.get(6), points.get(22)));
+//        connections.add(new D3line(points.get(7), points.get(23)));
+//        connections.add(new D3line(points.get(8), points.get(24)));
+//        connections.add(new D3line(points.get(9), points.get(25)));
+//        connections.add(new D3line(points.get(10), points.get(26)));
+//        connections.add(new D3line(points.get(11), points.get(27)));
+//        connections.add(new D3line(points.get(12), points.get(28)));
+//        connections.add(new D3line(points.get(13), points.get(29)));
+//        connections.add(new D3line(points.get(14), points.get(30)));
+//        connections.add(new D3line(points.get(15), points.get(31)));
     }
 
 }
