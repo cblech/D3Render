@@ -10,6 +10,7 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Scanner;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -55,34 +56,44 @@ public class D3Objekt {
             }
         }
 
-        addS s = addS.Idel;
+        addS st = addS.Idel;
         int lineCount = 1;
         ArrayList<TemporaryLineNotation> tlns = new ArrayList<>();
         ArrayList<TemporaryPointNotation> tpns = new ArrayList<>();
 
         try {
-            BufferedReader bf = new BufferedReader(new FileReader(p));
+//            BufferedReader bf = new BufferedReader(new FileReader(p));
+            Scanner s = new Scanner(p);
 
-            if (!bf.readLine().equals("#m3d v:0.1")) {
+//            if (!bf.readLine().equals("#m3d v:0.1")) {
+//                throw new Exception("No valid filetype. (Looking for \"#m3d v:0.1\")");
+//            }
+            if (!s.nextLine().equals("#m3d v:0.1")) {
                 throw new Exception("No valid filetype. (Looking for \"#m3d v:0.1\")");
             }
 
             lineCount++;
 
-            while (bf.ready()) {
-                String line = bf.readLine();
+//            while (bf.ready()) {
+            while (s.hasNext()) {
+//                String line = bf.readLine();
+                String line = s.nextLine();
                 if (!(line.startsWith("-") || line.equals(""))) {
                     if (line.startsWith("#")) {
-                        if (line.equals("#points")) {
-                            s = addS.Points;
-                        } else if (line.equals("#lines")) {
-                            s = addS.Lines;
-                        } else {
-                            System.out.println("Unexpected add status at line: " + lineCount);
+                        switch (line) {
+                            case "#points":
+                                st = addS.Points;
+                                break;
+                            case "#lines":
+                                st = addS.Lines;
+                                break;
+                            default:
+                                System.out.println("Unexpected add status at line: " + lineCount);
+                                break;
                         }
                     } else {
                         String[] lineArr = line.split(" ", 4);
-                        switch (s) {
+                        switch (st) {
                             case Idel:
                                 System.out.println("No addstatus specified (line: " + lineCount + ")");
                                 break;
