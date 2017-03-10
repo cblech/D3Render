@@ -16,19 +16,17 @@ class RenderPannel extends JPanel {
 //####################################################
 //  Create scene objekts
     //D3cube dc = new D3cube(new D3vec(-.5, .5, -.5), new D3vec(.5, -.5, .5));
-    //D3LetterJ dj = new D3LetterJ();
-    //D3Objekt d3v = new D3Objekt("objekts/LetterV.m3d");
+    D3Objekt d3v = new D3Objekt("objekts/LetterV.m3d");
     D3Objekt d3j = new D3Objekt("objekts/LetterJ.m3d");
-    //D3Objekt d3p = new D3Objekt("objekts/plus.m3d");
+    D3Objekt d3p = new D3Objekt("objekts/plus.m3d");
     D3Objekt d3c = new D3Objekt("objekts/cube.m3d");
 
 //  Add objekt to drawlist
     private void drawList() {
         //drawList.add(dc);
-        //drawList.add(dj);
-        //drawList.add(d3v);
+        drawList.add(d3v);
         drawList.add(d3j);
-        //drawList.add(d3p);
+        drawList.add(d3p);
         drawList.add(d3c);
     }
 
@@ -37,10 +35,9 @@ class RenderPannel extends JPanel {
         //change Camera Z offset (Default: -2)
         dg.setCammeraZPos(-1.2);
 
-        //d3v.setYrot(1);
         d3c.positoin = new D3vec(1.5, 0, 2);
         d3j.positoin = new D3vec(-.7, 0, 0);
-        //d3v.positoin= new D3vec(.7, 0, 0);
+        d3v.positoin= new D3vec(.7, 0, 0);
     }
 
 //  Add scene action over time
@@ -49,12 +46,10 @@ class RenderPannel extends JPanel {
         //dc.addXrot(.02);
         //dc.addYrot(.03);
         //dc.addZrot(.01);
-
-        //dj.addYrot(.01);
-        //d3v.setYrot(3.1415/2);
-        //d3v.addYrot(-.04);
-        //d3p.addYrot(-.07);
-        //d3p.addZrot(-.01);
+       
+        d3v.addYrot(-.04);
+        d3p.addYrot(-.07);
+        d3p.addZrot(-.01);
         d3j.addYrot(.03);
         d3c.addYrot(-.02);
         d3c.addXrot(-.014);

@@ -1,27 +1,26 @@
-#m3d v:0.1
-- Eine m3d Datei muss mit der Zeile "#m3d v:0.1" beginnen.
-- Kommentare werden mit einem "-" am Zeilenanfang eingeleitet.
-- Kommentare können nicht später beginnen.
-- Um punkte festzulegen muss eine zeile "#points" heißen.
+#m3d v:0.2
+-- Eine m3d Datei muss mit der Zeile "#m3d v:0.2" beginnen.
+-- Kommentare werden mit einem "--" eingeleitet.
+-- Um punkte festzulegen muss eine zeile "#points" heißen.
 #points
-- Punkte werden mit volgender Syntax bestimmt
-- [Punkt Name] [x] [y] [z]  (Jeweils mit einem Leerzeichen getrennt)
+-- Punkte werden mit volgender Syntax bestimmt
+-- [Punkt Name] [x] [y] [z]  (Jeweils mit einem Leerzeichen getrennt)
 
-1 .5 .5 .5
+1 .5 .5 .5 --das ist ein kommentar
 2 -.5 .5 .5
 3 .5 -.5 .5
-4 -.5 -.5 .5
+4 -.5 -.5 .5 
 
 5 .5 .5 -.5
 6 -.5 .5 -.5
 7 .5 -.5 -.5
 8 -.5 -.5 -.5
 
-- Um Verbindungen bzw. die Linien festzulegen muss eine zeile "#lines" heißen.
+-- Um Verbindungen bzw. die Linien festzulegen muss eine zeile "#lines" heißen.
 #lines
-- Linien werden mit volgender Syntax bestimmt
-- [Von Punkt Name] [Zu Punkt Name]  (Jeweils mit einem Leerzeichen getrennt)
-- Die Linie wird zwischen den beiden Punkten gezogen
+-- Linien werden mit volgender Syntax bestimmt
+-- [Von Punkt Name] [Zu Punkt Name]  (Jeweils mit einem Leerzeichen getrennt)
+-- Die Linie wird zwischen den beiden Punkten gezogen
 
 1 2
 2 4

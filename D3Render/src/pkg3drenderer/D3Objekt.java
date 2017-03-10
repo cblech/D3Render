@@ -5,11 +5,12 @@
  */
 package pkg3drenderer;
 
-import java.io.BufferedReader;
+import java.io.File;
 import java.io.FileNotFoundException;
-import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Locale;
+import java.util.NoSuchElementException;
 import java.util.Scanner;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -62,25 +63,25 @@ public class D3Objekt {
         ArrayList<TemporaryPointNotation> tpns = new ArrayList<>();
 
         try {
-//            BufferedReader bf = new BufferedReader(new FileReader(p));
-            Scanner s = new Scanner(p);
+            Scanner s = new Scanner(new File(p));
 
-//            if (!bf.readLine().equals("#m3d v:0.1")) {
-//                throw new Exception("No valid filetype. (Looking for \"#m3d v:0.1\")");
-//            }
-            if (!s.nextLine().equals("#m3d v:0.1")) {
+            if (!s.next().equals("#m3d")) {
                 throw new Exception("No valid filetype. (Looking for \"#m3d v:0.1\")");
             }
 
-            lineCount++;
+            if (!s.next().equals("v:0.2")) {
+                throw new Exception("Wrong m3d-File Version");
+            }
 
-//            while (bf.ready()) {
             while (s.hasNext()) {
-//                String line = bf.readLine();
                 String line = s.nextLine();
-                if (!(line.startsWith("-") || line.equals(""))) {
+                line = line.split("--")[0];
+                Scanner t = new Scanner(line);
+                t.useLocale(Locale.US);
+                if (t.hasNext()) {
+
                     if (line.startsWith("#")) {
-                        switch (line) {
+                        switch (t.next()) {
                             case "#points":
                                 st = addS.Points;
                                 break;
@@ -88,28 +89,29 @@ public class D3Objekt {
                                 st = addS.Lines;
                                 break;
                             default:
-                                System.out.println("Unexpected add status at line: " + lineCount);
-                                break;
+                                throw new Exception("Unexpected add status at line: " + lineCount);
+
                         }
                     } else {
                         String[] lineArr = line.split(" ", 4);
                         switch (st) {
                             case Idel:
-                                System.out.println("No addstatus specified (line: " + lineCount + ")");
-                                break;
+                                throw new Exception("No addstatus specified (line: " + lineCount + ")");
+
                             case Lines:
-                                if (lineArr.length != 2) {
+
+                                tlns.add(new TemporaryLineNotation(t.next(), t.next()));
+                                if (t.hasNext()) {
+                                    System.out.println("=> " + t.next());
                                     throw new Exception("Syntax error at line: " + lineCount);
                                 }
-                                tlns.add(new TemporaryLineNotation(lineArr[0], lineArr[1]));
                                 break;
                             case Points:
                                 if (lineArr.length != 4) {
                                     throw new Exception("Syntax error at line: " + lineCount);
                                 }
-
-                                tpns.add(new TemporaryPointNotation(lineArr[0], Double.parseDouble(lineArr[1]),
-                                        Double.parseDouble(lineArr[2]), Double.parseDouble(lineArr[3])));
+                                tpns.add(new TemporaryPointNotation(t.next(), t.nextDouble(),
+                                        t.nextDouble(), t.nextDouble()));
                                 break;
                         }
                     }
@@ -117,40 +119,71 @@ public class D3Objekt {
                 }
                 lineCount++;
             }
+
+            for (TemporaryPointNotation tpn : tpns) {
+                D3vec tmpVec = new D3vec(tpn.x, tpn.y, tpn.z);
+                points.add(tmpVec);
+                tpn.actual3vec = tmpVec;
+            }
+
+            for (TemporaryLineNotation tln : tlns) {
+                D3vec a = null, b = null;
+
+                for (TemporaryPointNotation tpn : tpns) {
+                    if (tpn.name.equals(tln.a)) {
+                        a = tpn.actual3vec;
+                    }
+                    if (tpn.name.equals(tln.b)) {
+                        b = tpn.actual3vec;
+                    }
+                }
+                if (a == null) {
+                    System.out.println("point: " + tln.a + " does not exist.");
+                } else if (b == null) {
+                    System.out.println("point: " + tln.b + " does not exist.");
+                } else {
+                    connections.add(new Vec2(points.indexOf(a), points.indexOf(b)));
+                }
+            }
         } catch (FileNotFoundException ex) {
             Logger.getLogger(D3Objekt.class.getName()).log(Level.SEVERE, null, ex);
         } catch (IOException ex) {
             Logger.getLogger(D3Objekt.class.getName()).log(Level.SEVERE, null, ex);
         } catch (NumberFormatException ex) {
             System.out.println("Syntax error at line: " + lineCount);
+        } catch (NoSuchElementException ex) {
+            System.out.println("Syntax error at line: " + lineCount);
         } catch (Exception ex) {
             Logger.getLogger(D3Objekt.class.getName()).log(Level.SEVERE, null, ex);
         }
 
-        for (TemporaryPointNotation tpn : tpns) {
-            D3vec tmpVec = new D3vec(tpn.x, tpn.y, tpn.z);
-            points.add(tmpVec);
-            tpn.actual3vec = tmpVec;
+    }
+
+    private void printNextDatatype(Scanner s) {
+        if (s.hasNext()) {
+            System.out.println("Has next");
+        } else {
+            System.out.println("Don't has next");
         }
-
-        for (TemporaryLineNotation tln : tlns) {
-            D3vec a = null, b = null;
-
-            for (TemporaryPointNotation tpn : tpns) {
-                if (tpn.name.equals(tln.a)) {
-                    a = tpn.actual3vec;
-                }
-                if (tpn.name.equals(tln.b)) {
-                    b = tpn.actual3vec;
-                }
-            }
-            if (a == null) {
-                System.out.println("point: " + tln.a + " does not exist.");
-            } else if (b == null) {
-                System.out.println("point: " + tln.b + " does not exist.");
-            } else {
-                connections.add(new Vec2(points.indexOf(a), points.indexOf(b)));
-            }
+        if (s.hasNextInt()) {
+            System.out.println("Has next int");
+        } else {
+            System.out.println("Don't has next int");
+        }
+        if (s.hasNextDouble()) {
+            System.out.println("Has next double");
+        } else {
+            System.out.println("Don't has next double");
+        }
+        if (s.hasNextFloat()) {
+            System.out.println("Has next float");
+        } else {
+            System.out.println("Don't has next float");
+        }
+        if (s.hasNextLong()) {
+            System.out.println("Has next long");
+        } else {
+            System.out.println("Don't has next long");
         }
     }
 
@@ -185,13 +218,13 @@ public class D3Objekt {
         for (D3vec point : points) {
             displayedPoints.add(calculateRotationOffset(point));
         }
-        
+
         for (D3vec displayedPoint : displayedPoints) {
-            displayedPoint.x+=positoin.x;
-            displayedPoint.y+=positoin.y;
-            displayedPoint.z+=positoin.z;
+            displayedPoint.x += positoin.x;
+            displayedPoint.y += positoin.y;
+            displayedPoint.z += positoin.z;
         }
-        
+
         for (Vec2 connection : connections) {
             displayedLines.add(new D3line(displayedPoints.get(connection.a), displayedPoints.get(connection.b)));
         }
