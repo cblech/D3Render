@@ -1,9 +1,7 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package tools;
+
+import java.awt.GridLayout;
+import javax.swing.JLabel;
 
 /**
  *
@@ -11,13 +9,44 @@ package tools;
  */
 public class Debugger extends javax.swing.JFrame {
 
+//    JLabel jLabel1;
+//    JLabel jLabel2;
+//    JLabel jLabel3;
+//    JLabel jLabel4;
+//    
+//    JLabel lblFps;
+//    JLabel lblJump;
+//    JLabel lblRight;
+//    JLabel lblLeft;
     /**
      * Creates new form Debugger
      */
     public Debugger() {
         startup();
-        initComponents();
 
+//        jLabel1 = new JLabel();
+//        lblFps = new JLabel();
+//        
+//        
+//        jLabel1.setText("FPS: ");
+//        getContentPane().add(jLabel1);
+//        jLabel2.setText("Jump: ");
+//        getContentPane().add(jLabel2);
+//        jLabel3.setText("Right: ");
+//        getContentPane().add(jLabel3);
+//        jLabel4.setText("Left: ");
+//        getContentPane().add(jLabel4);
+//
+//        lblFps.setText("jLabel2");
+//        getContentPane().add(lblFps);
+//        lblJump.setText("jLabel2");
+//        getContentPane().add(lblJump);
+//        lblRight.setText("jLabel2");
+//        getContentPane().add(lblRight);
+//        lblLeft.setText("jLabel2");
+//        getContentPane().add(lblLeft);
+
+        initComponents();
     }
 
     /**
@@ -31,33 +60,41 @@ public class Debugger extends javax.swing.JFrame {
 
         jLabel1 = new javax.swing.JLabel();
         lblFps = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        lblJump = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        lblLeft = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        lblRight = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setBounds(new java.awt.Rectangle(0, 0, 0, 0));
+        setFocusable(false);
+        getContentPane().setLayout(new java.awt.GridLayout(4, 2, 20, 20));
 
         jLabel1.setText("FPS: ");
+        getContentPane().add(jLabel1);
 
-        lblFps.setText("jLabel2");
+        lblFps.setText("jLabel5");
+        getContentPane().add(lblFps);
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel1)
-                .addGap(18, 18, 18)
-                .addComponent(lblFps)
-                .addContainerGap(313, Short.MAX_VALUE))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1)
-                    .addComponent(lblFps))
-                .addContainerGap(275, Short.MAX_VALUE))
-        );
+        jLabel2.setText("Jump:");
+        getContentPane().add(jLabel2);
+
+        lblJump.setText("jLabel10");
+        getContentPane().add(lblJump);
+
+        jLabel3.setText("Left:");
+        getContentPane().add(jLabel3);
+
+        lblLeft.setText("jLabel11");
+        getContentPane().add(lblLeft);
+
+        jLabel4.setText("Right:");
+        getContentPane().add(jLabel4);
+
+        lblRight.setText("jLabel12");
+        getContentPane().add(lblRight);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -98,10 +135,31 @@ public class Debugger extends javax.swing.JFrame {
             lblFps.setText(String.valueOf(i));
         }
     }
+    public void setJump(boolean b) {
+        if (lblJump != null) {
+            lblJump.setText(String.valueOf(b));
+        }
+    }
+    public void setRight(boolean b) {
+        if (lblRight != null) {
+            lblRight.setText(String.valueOf(b));
+        }
+    }
+    public void setLeft(boolean b) {
+        if (lblLeft != null) {
+            lblLeft.setText(String.valueOf(b));
+        }
+    }
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel lblFps;
+    private javax.swing.JLabel lblJump;
+    private javax.swing.JLabel lblLeft;
+    private javax.swing.JLabel lblRight;
     // End of variables declaration//GEN-END:variables
 }

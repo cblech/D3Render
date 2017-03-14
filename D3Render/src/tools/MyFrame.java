@@ -5,6 +5,7 @@
  */
 package tools;
 
+import game.KeyMapper;
 import graphic.RenderPannel;
 
 /**
@@ -18,7 +19,7 @@ public class MyFrame extends javax.swing.JFrame {
     int width = 900;
     int height = 900;
 
-    boolean debugging = false;
+    boolean debugging = true;
 
     public MyFrame() {
         if (debugging) {
@@ -34,6 +35,8 @@ public class MyFrame extends javax.swing.JFrame {
         setSize(width, height + 26);
         setLocationRelativeTo(null);
         rp.setBounds(0, 0, width, height);
+        
+        addKeyListener(new KeyMapper());
     }
 
     @SuppressWarnings("unchecked")
