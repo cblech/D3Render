@@ -3,19 +3,19 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package pkg3drenderer;
+package utils;
 
 /**
  *
  * @author jonathan
  */
-public class Vec2 {
+public class D3vec {
+    public double x,y,z;
 
-    int a, b;
-
-    public Vec2(int a, int b) {
-        this.a = a;
-        this.b = b;
+    public D3vec(double x, double y, double z) {
+        this.x = x;
+        this.y = y;
+        this.z = z;
     }
-
+    
 }

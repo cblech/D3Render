@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package pkg3drenderer;
+package graphic;
 
 import java.awt.Dimension;
 import java.awt.Graphics;
@@ -42,10 +42,6 @@ public class NormalisedGraphics {
         g.drawRect(x1Norm, y1Norm, normalizeX(x2) - x1Norm, normalizeY(y2) - y1Norm);
     }
 
-    public void fillTriangle(NormalisedTriangle nt) {
-        int[] ia = {normalizeX(nt.x1), normalizeX(nt.x2), normalizeX(nt.x3)};
-        int[] ja = {normalizeY(nt.y1), normalizeY(nt.y2), normalizeY(nt.y3)};
-        g.fillPolygon(ia, ja, 3);
-    }
+   
 
 }

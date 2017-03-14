@@ -1,5 +1,10 @@
-package pkg3drenderer;
+package graphic;
 
+import graphic.D3Objekt;
+import graphic.NormalisedGraphics;
+import graphic.D3Graphics;
+import tools.MyFrame;
+import utils.D3vec;
 import java.awt.Graphics;
 import java.util.ArrayList;
 import java.util.Random;
@@ -9,7 +14,7 @@ import javax.swing.JPanel;
  *
  * @author jonathan
  */
-class RenderPannel extends JPanel {
+public class RenderPannel extends JPanel {
 
 //####################################################
 //  Scene setup
@@ -24,9 +29,9 @@ class RenderPannel extends JPanel {
 //  Add objekt to drawlist
     private void drawList() {
         //drawList.add(dc);
-        drawList.add(d3v);
+        //drawList.add(d3v);
         drawList.add(d3j);
-        drawList.add(d3p);
+        //drawList.add(d3p);
         drawList.add(d3c);
     }
 

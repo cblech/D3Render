@@ -3,8 +3,11 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package pkg3drenderer;
+package graphic;
 
+import utils.D3vec;
+import utils.D3line;
+import utils.Vec2;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -24,7 +27,7 @@ public class D3Objekt {
     ArrayList<D3vec> points = new ArrayList<>();
     ArrayList<Vec2> connections = new ArrayList<>();
 
-    D3vec positoin = new D3vec(0, 0, 0);
+    public D3vec positoin = new D3vec(0, 0, 0);
     private D3vec rotation = new D3vec(0, 0, 0);
 
     private enum addS {

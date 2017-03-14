@@ -3,7 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package pkg3drenderer;
+package tools;
+
+import graphic.RenderPannel;
 
 /**
  *
@@ -11,7 +13,7 @@ package pkg3drenderer;
  */
 public class MyFrame extends javax.swing.JFrame {
 
-    Debugger db;
+    public Debugger db;
     RenderPannel rp = new RenderPannel(this);
     int width = 900;
     int height = 900;

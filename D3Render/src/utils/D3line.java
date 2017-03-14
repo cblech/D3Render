@@ -3,19 +3,18 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package pkg3drenderer;
+package utils;
 
 /**
  *
  * @author jonathan
  */
-public class D3vec {
-    double x,y,z;
+public class D3line {
 
-    public D3vec(double x, double y, double z) {
-        this.x = x;
-        this.y = y;
-        this.z = z;
+    public D3vec startPoint, endPoint;
+
+    public D3line(D3vec startPoint, D3vec endPoint) {
+        this.startPoint = startPoint;
+        this.endPoint = endPoint;
     }
-    
 }
