@@ -1,11 +1,8 @@
 package graphic;
 
 import game.Game;
-import game.KeyMapper;
 import tools.MyFrame;
-import utils.D3vec;
 import java.awt.Graphics;
-import java.util.ArrayList;
 import java.util.Random;
 import javax.swing.JPanel;
 

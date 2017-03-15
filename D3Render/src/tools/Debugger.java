@@ -1,8 +1,5 @@
 package tools;
 
-import java.awt.GridLayout;
-import javax.swing.JLabel;
-
 /**
  *
  * @author luebeck.jonathan

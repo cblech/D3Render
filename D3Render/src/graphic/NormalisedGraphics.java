@@ -15,6 +15,8 @@ import java.awt.Graphics;
 public class NormalisedGraphics {
 
     Graphics g;
+    double verhaeltnisX = 2;
+    double verhaeltnisY = 1;
     int maxX;
     int maxY;
 
@@ -25,11 +27,11 @@ public class NormalisedGraphics {
     }
 
     private int normalizeX(double x) {
-        return (int) (x * maxX / 2) + maxX / 2;
+        return (int) (x * maxX / 2 / verhaeltnisX) + maxX / 2;
     }
 
     private int normalizeY(double y) {
-        return (int) (y * maxY / 2) + maxY / 2;
+        return (int) (y * maxY / 2 / verhaeltnisY) + maxY / 2;
     }
 
     public void drawLine(double x1, double y1, double x2, double y2) {
@@ -41,7 +43,5 @@ public class NormalisedGraphics {
         int y1Norm = normalizeY(y1);
         g.drawRect(x1Norm, y1Norm, normalizeX(x2) - x1Norm, normalizeY(y2) - y1Norm);
     }
-
-   
 
 }

@@ -36,7 +36,6 @@ public class KeyMapper extends KeyAdapter {
 
     public void updateKeymaping() {
         try {
-
             director = new EventDirector() {
                 final int jump = Integer.parseInt(properties.getProperty("jump"));
                 final int right = Integer.parseInt(properties.getProperty("right"));
@@ -71,7 +70,6 @@ public class KeyMapper extends KeyAdapter {
     }
 
     class EventDirector {
-
         public void keyDirect(int key, boolean set) {
         }
     }
