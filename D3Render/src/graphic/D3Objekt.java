@@ -65,11 +65,11 @@ public class D3Objekt {
             Scanner s = new Scanner(new File(p));
 
             if (!s.next().equals("#m3d")) {
-                throw new Exception("No valid filetype. (Looking for \"#m3d v:0.1\")");
+                throw new Exception("No valid filetype. (Looking for \"#m3d [...]\")");
             }
 
             if (!s.next().equals("v:0.2")) {
-                throw new Exception("Wrong m3d-File Version");
+                throw new Exception("Wrong m3d-File Version. (Looking for \"v:0.2\")");
             }
 
             while (s.hasNext()) {
