@@ -1,6 +1,7 @@
 package graphic;
 
 import game.Game;
+import game.KeyMapper;
 import tools.MyFrame;
 import java.awt.Graphics;
 import java.util.Random;
@@ -12,10 +13,11 @@ import javax.swing.JPanel;
  */
 public class RenderPannel extends JPanel {
 
-    Game game;
-    Random r = new Random();
-    NormalisedGraphics ng;
-    D3Graphics dg;
+    public Game game;
+    public Random r = new Random();
+    public NormalisedGraphics ng;
+    public D3Graphics dg;
+    
     
     public MyFrame jf;
     public int fps = 0;
@@ -33,7 +35,6 @@ public class RenderPannel extends JPanel {
         dg = new D3Graphics(ng);
         
         game.paintObjekts(dg);
-        
         
     }
 

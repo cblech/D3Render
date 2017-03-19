@@ -14,6 +14,7 @@ import graphic.RenderPannel;
  */
 public class MyFrame extends javax.swing.JFrame {
 
+    public KeyMapper km = new KeyMapper();
     public Debugger db;
     RenderPannel rp = new RenderPannel(this);
     int width = 1600;
@@ -56,8 +57,7 @@ public class MyFrame extends javax.swing.JFrame {
         setSize(width, height + 26);
         setLocationRelativeTo(null);
         rp.setBounds(0, 0, width, height);
-
-        addKeyListener(new KeyMapper());
+        addKeyListener(km);
     }
 
     @SuppressWarnings("unchecked")
