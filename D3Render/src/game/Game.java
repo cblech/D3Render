@@ -31,9 +31,9 @@ public class Game {
 //  Add objekt to drawlist
     private void onSteup() {
         //drawList.add(d3v);
-        drawList.add(d3j);
+        dynamicObjekts.add(d3j);
         //drawList.add(d3p);
-        drawList.add(d3c);
+        dynamicObjekts.add(d3c);
 
 //  Position scene objekts
         //change Camera Z offset (Default: -2)
@@ -61,7 +61,8 @@ public class Game {
 //  end scene setup
 //####################################################
     public static D3Camera usedCam;
-    ArrayList<D3DynamicObjekt> drawList = new ArrayList<>();
+    ArrayList<D3DynamicObjekt> dynamicObjekts = new ArrayList<>();
+    ArrayList<D3DynamicObjekt> staticObjekts = new ArrayList<>();
     RenderPannel rp;
 
     public Game(RenderPannel rp) {
@@ -81,7 +82,7 @@ public class Game {
     }
 
     public void paintObjekts(D3Graphics dg) {
-        for (D3DynamicObjekt objekt : drawList) {
+        for (D3DynamicObjekt objekt : dynamicObjekts) {
             dg.draw3dObjekt(objekt);
         }
     }

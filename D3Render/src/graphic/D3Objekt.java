@@ -25,6 +25,9 @@ public class D3Objekt {
 
     ArrayList<D3vec> points = new ArrayList<>();
     ArrayList<Vec2> connections = new ArrayList<>();
+    
+    public D3vec positoin = new D3vec(0, 0, 0);
+    public D3vec rotation = new D3vec(0, 0, 0);
 
     private enum addS {
         Idel, Points, Lines

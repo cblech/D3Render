@@ -17,13 +17,6 @@ import java.util.Scanner;
  */
 public class D3DynamicObjekt extends D3Objekt{
 
-   
-
-    public D3vec positoin = new D3vec(0, 0, 0);
-    private D3vec rotation = new D3vec(0, 0, 0);
-
-   
-
     public D3DynamicObjekt() {
         super();
     }
