@@ -14,6 +14,7 @@ import java.util.NoSuchElementException;
 import java.util.Scanner;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import utils.D3line;
 import utils.D3vec;
 import utils.Vec2;
 
@@ -25,7 +26,7 @@ public class D3Objekt {
 
     ArrayList<D3vec> points = new ArrayList<>();
     ArrayList<Vec2> connections = new ArrayList<>();
-    
+
     public D3vec positoin = new D3vec(0, 0, 0);
     public D3vec rotation = new D3vec(0, 0, 0);
 
@@ -159,6 +160,44 @@ public class D3Objekt {
             Logger.getLogger(D3DynamicObjekt.class.getName()).log(Level.SEVERE, null, ex);
         }
 
+    }
+
+    public ArrayList<D3line> getLines() {
+        return null;
+    }
+
+    D3vec calculateRotationOffset(D3vec p) {
+        return calculateRotationOffset(p, rotation);
+    }
+
+    D3vec calculateRotationOffset(D3vec p, D3vec r) {
+        D3vec point = new D3vec(p.x, p.y, p.z);
+
+        //y-axis
+        double nx = point.x * Math.cos(r.y) + point.z * Math.sin(r.y);
+        double ny = point.y;
+        double nz = point.z * Math.cos(r.y) - point.x * Math.sin(r.y);
+        point.x = nx;
+        point.y = ny;
+        point.z = nz;
+
+        //x-axis
+        nx = point.x;
+        ny = point.z * Math.sin(r.x) + point.y * Math.cos(r.x);
+        nz = point.z * Math.cos(r.x) - point.y * Math.sin(r.x);
+        point.x = nx;
+        point.y = ny;
+        point.z = nz;
+
+        //z-axis
+        nx = point.x * Math.cos(r.z) - point.y * Math.sin(r.z);
+        ny = point.x * Math.sin(r.z) + point.y * Math.cos(r.z);
+        nz = point.z;
+        point.x = nx;
+        point.y = ny;
+        point.z = nz;
+
+        return point;
     }
 
 }

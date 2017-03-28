@@ -41,7 +41,7 @@ public class D3Graphics {
                 (y2 + cm.pos.y) / (z2 + cm.pos.z * -1));
     }
 
-    public void draw3dObjekt(D3DynamicObjekt d) {
+    public void draw3dObjekt(D3Objekt d) {
         for (D3line d3line : d.getLines()) {
             drawPerspectiveLine(d3line);
         }

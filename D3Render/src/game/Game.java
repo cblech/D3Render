@@ -8,6 +8,9 @@ package game;
 import graphic.D3Camera;
 import graphic.D3Graphics;
 import graphic.D3DynamicObjekt;
+import graphic.D3Objekt;
+import graphic.D3StaticObjekt;
+import graphic.D3StaticWorldObjekt;
 import graphic.RenderPannel;
 import java.util.ArrayList;
 import utils.D3vec;
@@ -23,7 +26,9 @@ public class Game {
 //####################################################
 //  Create scene objekts
     D3Camera cam;
+    D3StaticObjekt std3v = new D3StaticObjekt("objekts/LetterV.m3d");
     D3DynamicObjekt d3v = new D3DynamicObjekt("objekts/LetterV.m3d");
+    D3StaticObjekt std3j = new D3StaticObjekt("objekts/LetterJ.m3d");
     D3DynamicObjekt d3j = new D3DynamicObjekt("objekts/LetterJ.m3d");
     D3DynamicObjekt d3p = new D3DynamicObjekt("objekts/plus.m3d");
     D3DynamicObjekt d3c = new D3DynamicObjekt("objekts/cube.m3d");
@@ -31,9 +36,11 @@ public class Game {
 //  Add objekt to drawlist
     private void onSteup() {
         //drawList.add(d3v);
-        dynamicObjekts.add(d3j);
+        objekts.add(d3j);
         //drawList.add(d3p);
-        dynamicObjekts.add(d3c);
+        objekts.add(d3c);
+        worldObjekt.addObjekt(std3v);
+        worldObjekt.addObjekt(std3j);
 
 //  Position scene objekts
         //change Camera Z offset (Default: -2)
@@ -42,6 +49,9 @@ public class Game {
         d3c.positoin = new D3vec(1.5, 0, 2);
         d3j.positoin = new D3vec(-.7, 0, 0);
         d3v.positoin = new D3vec(.7, 0, 0);
+        std3j.positoin = new D3vec(-.7, 3, 0);
+        std3v.positoin = new D3vec(.7, 3, 0);
+        std3j.setYrot(0.4);
     }
 
 //  Add scene action over time
@@ -61,15 +71,19 @@ public class Game {
 //  end scene setup
 //####################################################
     public static D3Camera usedCam;
-    ArrayList<D3DynamicObjekt> dynamicObjekts = new ArrayList<>();
-    ArrayList<D3DynamicObjekt> staticObjekts = new ArrayList<>();
+    ArrayList<D3Objekt> objekts = new ArrayList<>();
+    D3StaticWorldObjekt worldObjekt = new D3StaticWorldObjekt();
+    
+    
     RenderPannel rp;
 
     public Game(RenderPannel rp) {
+        objekts.add(worldObjekt);
         this.rp = rp;
         cam = new D3Camera();
         usedCam = cam;
         onSteup();
+        worldObjekt.bakeLines();
         new Thread(new Ticker(this)).start();
     }
 
@@ -82,7 +96,7 @@ public class Game {
     }
 
     public void paintObjekts(D3Graphics dg) {
-        for (D3DynamicObjekt objekt : dynamicObjekts) {
+        for (D3Objekt objekt : objekts) {
             dg.draw3dObjekt(objekt);
         }
     }

@@ -78,6 +78,7 @@ public class D3DynamicObjekt extends D3Objekt{
         rotation.x = r;
     }
 
+    @Override
     public ArrayList<D3line> getLines() {
         ArrayList<D3line> displayedLines = new ArrayList<>();
         ArrayList<D3vec> displayedPoints = new ArrayList<>();
@@ -99,36 +100,7 @@ public class D3DynamicObjekt extends D3Objekt{
         return displayedLines;
     }
 
-    private D3vec calculateRotationOffset(D3vec p) {
-        D3vec point = new D3vec(p.x, p.y, p.z);
-
-        //y-axis
-        double nx = point.x * Math.cos(rotation.y) + point.z * Math.sin(rotation.y);
-        double ny = point.y;
-        double nz = point.z * Math.cos(rotation.y) - point.x * Math.sin(rotation.y);
-        point.x = nx;
-        point.y = ny;
-        point.z = nz;
-
-        //x-axis
-        nx = point.x;
-        ny = point.z * Math.sin(rotation.x) + point.y * Math.cos(rotation.x);
-        nz = point.z * Math.cos(rotation.x) - point.y * Math.sin(rotation.x);
-        point.x = nx;
-        point.y = ny;
-        point.z = nz;
-
-        //z-axis
-        nx = point.x * Math.cos(rotation.z) - point.y * Math.sin(rotation.z);
-        ny = point.x * Math.sin(rotation.z) + point.y * Math.cos(rotation.z);
-        nz = point.z;
-        point.x = nx;
-        point.y = ny;
-        point.z = nz;
-
-        return point;
-    }
-
+    
     private void calculatePositionOffset() {
 
     }

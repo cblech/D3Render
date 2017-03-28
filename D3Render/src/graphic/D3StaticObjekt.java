@@ -20,4 +20,15 @@ public class D3StaticObjekt extends D3Objekt{
     }
     
     
+    public void setZrot(double r) {
+        rotation.z = r;
+    }
+
+    public void setYrot(double r) {
+        rotation.y = r;
+    }
+
+    public void setXrot(double r) {
+        rotation.x = r;
+    }
 }
