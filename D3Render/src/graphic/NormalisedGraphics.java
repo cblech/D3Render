@@ -7,6 +7,10 @@ package graphic;
 
 import java.awt.Dimension;
 import java.awt.Graphics;
+import java.awt.Graphics2D;
+import java.awt.geom.CubicCurve2D;
+import java.awt.geom.QuadCurve2D;
+import utils.D3CubCurve;
 
 /**
  *
@@ -15,6 +19,7 @@ import java.awt.Graphics;
 public class NormalisedGraphics {
 
     Graphics g;
+    Graphics2D g2d;
     double verhaeltnisX = 2;
     double verhaeltnisY = 1;
     int maxX;
@@ -22,6 +27,7 @@ public class NormalisedGraphics {
 
     public NormalisedGraphics(Graphics g, Dimension compSice) {
         this.g = g;
+        this.g2d = (Graphics2D) this.g;
         maxX = compSice.width;
         maxY = compSice.height;
     }
@@ -43,5 +49,12 @@ public class NormalisedGraphics {
         int y1Norm = normalizeY(y1);
         g.drawRect(x1Norm, y1Norm, normalizeX(x2) - x1Norm, normalizeY(y2) - y1Norm);
     }
-
+    
+    public void drawQuadCurve(double x1,double y1,double xcont,double ycont,double x2,double y2){
+        g2d.draw(new QuadCurve2D.Float(normalizeX(x1), normalizeY(y1), normalizeX(xcont), normalizeY(ycont), normalizeX(x2), normalizeY(y2)));
+    }
+    
+    public void drawCubCurve(double x1,double y1,double xcont1,double ycont1,double xcont2,double ycont2,double x2,double y2){
+        g2d.draw(new CubicCurve2D.Float(normalizeX(x1), normalizeY(y1), normalizeX(xcont1), normalizeY(ycont1), normalizeX(xcont2), normalizeY(ycont2), normalizeX(x2), normalizeY(y2)));
+    }
 }

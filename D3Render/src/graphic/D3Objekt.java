@@ -71,9 +71,9 @@ public class D3Objekt {
             if (!s.next().equals("#m3d")) {
                 throw new Exception("No valid filetype. (Looking for \"#m3d [...]\")");
             }
-
-            if (!s.next().equals("v:0.2")) {
-                throw new Exception("Wrong m3d-File Version. (Looking for \"v:0.2\")");
+            String temp = s.next();
+            if (!(temp.equals("v:0.2")||temp.equals("v:0.2.1"))) {
+                throw new Exception("Wrong m3d-File version. Suportet versions are: 0.2, 0.2.1");
             }
 
             while (s.hasNext()) {
@@ -163,6 +163,10 @@ public class D3Objekt {
     }
 
     public ArrayList<D3line> getLines() {
+        return null;
+    }
+    
+    public ArrayList<D3line> getCurves() {
         return null;
     }
 

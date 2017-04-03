@@ -26,45 +26,45 @@ public class Game {
 //####################################################
 //  Create scene objekts
     D3Camera cam;
-    D3StaticObjekt std3v = new D3StaticObjekt("objekts/LetterV.m3d");
-    D3DynamicObjekt d3v = new D3DynamicObjekt("objekts/LetterV.m3d");
-    D3StaticObjekt std3j = new D3StaticObjekt("objekts/LetterJ.m3d");
-    D3DynamicObjekt d3j = new D3DynamicObjekt("objekts/LetterJ.m3d");
-    D3DynamicObjekt d3p = new D3DynamicObjekt("objekts/plus.m3d");
-    D3DynamicObjekt d3c = new D3DynamicObjekt("objekts/cube.m3d");
+    D3DynamicObjekt curvyCube = new D3DynamicObjekt("objekts/cuberound.m3d");
+////    D3StaticObjekt std3v = new D3StaticObjekt("objekts/LetterV.m3d");
+////    D3DynamicObjekt d3v = new D3DynamicObjekt("objekts/LetterV.m3d");
+////    D3StaticObjekt std3j = new D3StaticObjekt("objekts/LetterJ.m3d");
+////    D3DynamicObjekt d3j = new D3DynamicObjekt("objekts/LetterJ.m3d");
+////    D3DynamicObjekt d3p = new D3DynamicObjekt("objekts/plus.m3d");
+////    D3DynamicObjekt d3c = new D3DynamicObjekt("objekts/cube.m3d");
 
 //  Add objekt to drawlist
     private void onSteup() {
-        //drawList.add(d3v);
-        objekts.add(d3j);
-        //drawList.add(d3p);
-        objekts.add(d3c);
-        worldObjekt.addObjekt(std3v);
-        worldObjekt.addObjekt(std3j);
+            objekts.add(curvyCube);
+//        objekts.add(d3j);
+//        objekts.add(d3c);
+//        worldObjekt.addObjekt(std3v);
+//        worldObjekt.addObjekt(std3j);
 
 //  Position scene objekts
         //change Camera Z offset (Default: -2)
         //dg.setCammeraZPos(-1.2); //TODO: Make Kammera Objekt
         cam.pos = new D3vec(0, 0, -1.2);
-        d3c.positoin = new D3vec(1.5, 0, 2);
-        d3j.positoin = new D3vec(-.7, 0, 0);
-        d3v.positoin = new D3vec(.7, 0, 0);
-        std3j.positoin = new D3vec(-.7, 3, 0);
-        std3v.positoin = new D3vec(.7, 3, 0);
-        std3j.setYrot(0.4);
+//        d3c.positoin = new D3vec(1.5, 0, 2);
+//        d3j.positoin = new D3vec(-.7, 0, 0);
+//        d3v.positoin = new D3vec(.7, 0, 0);
+//        std3j.positoin = new D3vec(-.7, 3, 0);
+//        std3v.positoin = new D3vec(.7, 3, 0);
+//        std3j.setYrot(0.4);
     }
 
 //  Add scene action over time
 //  action will perform every 1/60 second
     private void onTick() {
 
-        d3v.addYrot(-.04);
-        d3p.addYrot(-.07);
-        d3p.addZrot(-.01);
-        d3j.addYrot(.03);
-        d3c.addYrot(-.02);
-        d3c.addXrot(-.014);
-        d3c.addZrot(-.018);
+//        d3v.addYrot(-.04);
+//        d3p.addYrot(-.07);
+//        d3p.addZrot(-.01);
+//        d3j.addYrot(.03);
+//        d3c.addYrot(-.02);
+//        d3c.addXrot(-.014);
+//        d3c.addZrot(-.018);
     }
 
 //####################################################
