@@ -31,7 +31,7 @@ public class D3Objekt {
     public D3vec rotation = new D3vec(0, 0, 0);
 
     private enum addS {
-        Idel, Points, Lines
+        Idel, Points, Lines, Curves
     }
 
     public D3Objekt() {
@@ -60,6 +60,25 @@ public class D3Objekt {
             }
         }
 
+        class TemporaryCurveNotation {
+
+            String start, cont1, cont2 = null, end;
+
+            public TemporaryCurveNotation(String start, String cont1, String end,Object o) {
+                this.start = start;
+                this.cont1 = cont1;
+                this.end = end;
+            }
+
+            public TemporaryCurveNotation(String start, String cont1, String cont2, String end) {
+                this.start = start;
+                this.cont1 = cont1;
+                this.cont2 = cont2;
+                this.end = end;
+            }
+
+        }
+
         D3Objekt.addS st = D3Objekt.addS.Idel;
         int lineCount = 1;
         ArrayList<TemporaryLineNotation> tlns = new ArrayList<>();
@@ -72,7 +91,7 @@ public class D3Objekt {
                 throw new Exception("No valid filetype. (Looking for \"#m3d [...]\")");
             }
             String temp = s.next();
-            if (!(temp.equals("v:0.2")||temp.equals("v:0.2.1"))) {
+            if (!(temp.equals("v:0.2") || temp.equals("v:0.2.1"))) {
                 throw new Exception("Wrong m3d-File version. Suportet versions are: 0.2, 0.2.1");
             }
 
@@ -91,12 +110,15 @@ public class D3Objekt {
                             case "#lines":
                                 st = D3Objekt.addS.Lines;
                                 break;
+                            case "#curves":
+                                st = D3Objekt.addS.Curves;
+                                break;
                             default:
                                 throw new Exception("Unexpected add status at line: " + lineCount);
 
                         }
                     } else {
-                        String[] lineArr = line.split(" ", 4);
+//                        String[] lineArr = line.split(" ", 4);
                         switch (st) {
                             case Idel:
                                 throw new Exception("No addstatus specified (line: " + lineCount + ")");
@@ -110,11 +132,18 @@ public class D3Objekt {
                                 }
                                 break;
                             case Points:
-                                if (lineArr.length != 4) {
-                                    throw new Exception("Syntax error at line: " + lineCount);
-                                }
+//                                if (lineArr.length != 4) {
+//                                    throw new Exception("Syntax error at line: " + lineCount);
+//                                }
                                 tpns.add(new TemporaryPointNotation(t.next(), t.nextDouble(),
                                         t.nextDouble(), t.nextDouble()));
+                                if (t.hasNext()) {
+                                    System.out.println("=> " + t.next());
+                                    throw new Exception("Syntax error at line: " + lineCount);
+                                }
+                                break;
+                            case Curves:
+                                
                                 break;
                         }
                     }
@@ -165,7 +194,7 @@ public class D3Objekt {
     public ArrayList<D3line> getLines() {
         return null;
     }
-    
+
     public ArrayList<D3line> getCurves() {
         return null;
     }
