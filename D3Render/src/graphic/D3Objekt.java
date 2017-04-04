@@ -14,9 +14,13 @@ import java.util.NoSuchElementException;
 import java.util.Scanner;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import utils.D3CubCurve;
+import utils.D3QuadCurve;
 import utils.D3line;
 import utils.D3vec;
 import utils.Vec2;
+import utils.Vec3;
+import utils.Vec4;
 
 /**
  *
@@ -26,6 +30,8 @@ public class D3Objekt {
 
     ArrayList<D3vec> points = new ArrayList<>();
     ArrayList<Vec2> connections = new ArrayList<>();
+    ArrayList<Vec3> quadCurves = new ArrayList<>();
+    ArrayList<Vec4> cubCurves = new ArrayList<>();
 
     public D3vec positoin = new D3vec(0, 0, 0);
     public D3vec rotation = new D3vec(0, 0, 0);
@@ -64,7 +70,7 @@ public class D3Objekt {
 
             String start, cont1, cont2 = null, end;
 
-            public TemporaryCurveNotation(String start, String cont1, String end,Object o) {
+            public TemporaryCurveNotation(String start, String cont1, String end) {
                 this.start = start;
                 this.cont1 = cont1;
                 this.end = end;
@@ -83,6 +89,7 @@ public class D3Objekt {
         int lineCount = 1;
         ArrayList<TemporaryLineNotation> tlns = new ArrayList<>();
         ArrayList<TemporaryPointNotation> tpns = new ArrayList<>();
+        ArrayList<TemporaryCurveNotation> tcns = new ArrayList<>();
 
         try {
             Scanner s = new Scanner(new File(p));
@@ -143,11 +150,19 @@ public class D3Objekt {
                                 }
                                 break;
                             case Curves:
-                                
+                                String t1 = t.next();
+                                String t2 = t.next();
+                                String t3 = t.next();
+                                String t4 = null;
+                                if (t.hasNext()) {
+                                    t4 = t.next();
+                                    tcns.add(new TemporaryCurveNotation(t1, t2, t3, t4));
+                                } else {
+                                    tcns.add(new TemporaryCurveNotation(t1, t2, t3));
+                                }
                                 break;
                         }
                     }
-
                 }
                 lineCount++;
             }
@@ -177,13 +192,42 @@ public class D3Objekt {
                     connections.add(new Vec2(points.indexOf(a), points.indexOf(b)));
                 }
             }
+            for (TemporaryCurveNotation tcn : tcns) {
+                D3vec start = null, end = null, cont1 = null, cont2 = null;
+
+                for (TemporaryPointNotation tpn : tpns) {
+                    if (tpn.name.equals(tcn.start)) {
+                        start = tpn.actual3vec;
+                    }
+                    if (tpn.name.equals(tcn.cont1)) {
+                        cont1 = tpn.actual3vec;
+                    }
+                    if (tpn.name.equals(tcn.cont2)) {
+                        cont2 = tpn.actual3vec;
+                    }
+                    if (tpn.name.equals(tcn.end)) {
+                        end = tpn.actual3vec;
+                    }
+                }
+                if (start == null) {
+                    System.out.println("point: " + tcn.start + " does not exist.");
+                } else if (cont1 == null) {
+                    System.out.println("point: " + tcn.cont1 + " does not exist.");
+                } else if (cont2 == null) {
+                    System.out.println("point: " + tcn.cont2 + " does not exist.");
+                } else if (end == null) {
+                    System.out.println("point: " + tcn.end + " does not exist.");
+                } else if (tcn.cont2 == null) {
+                    quadCurves.add(new Vec3(points.indexOf(start), points.indexOf(cont1), points.indexOf(end)));
+                } else {
+                    cubCurves.add(new Vec4(points.indexOf(start), points.indexOf(cont1), points.indexOf(cont2), points.indexOf(end)));
+                }
+            }
         } catch (FileNotFoundException ex) {
             Logger.getLogger(D3DynamicObjekt.class.getName()).log(Level.SEVERE, null, ex);
         } catch (IOException ex) {
             Logger.getLogger(D3DynamicObjekt.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (NumberFormatException ex) {
-            System.out.println("Syntax error at line: " + lineCount);
-        } catch (NoSuchElementException ex) {
+        } catch (NumberFormatException | NoSuchElementException ex) {
             System.out.println("Syntax error at line: " + lineCount);
         } catch (Exception ex) {
             Logger.getLogger(D3DynamicObjekt.class.getName()).log(Level.SEVERE, null, ex);
@@ -195,7 +239,10 @@ public class D3Objekt {
         return null;
     }
 
-    public ArrayList<D3line> getCurves() {
+    public ArrayList<D3CubCurve> getCubCurves() {
+        return null;
+    }
+    public ArrayList<D3QuadCurve> getQuadCurves() {
         return null;
     }
 

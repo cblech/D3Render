@@ -10,22 +10,22 @@ import utils.D3line;
 import utils.Vec2;
 import java.util.ArrayList;
 import java.util.Scanner;
+import utils.D3CubCurve;
 
 /**
  *
  * @author jonathan
  */
-public class D3DynamicObjekt extends D3Objekt{
+public class D3DynamicObjekt extends D3Objekt {
 
     public D3DynamicObjekt() {
         super();
     }
-    
+
     public D3DynamicObjekt(String p) {
         super(p);
     }
 
-    
     private void printNextDatatype(Scanner s) {
         if (s.hasNext()) {
             System.out.println("Has next");
@@ -100,7 +100,11 @@ public class D3DynamicObjekt extends D3Objekt{
         return displayedLines;
     }
 
-    
+    @Override
+    public ArrayList<D3CubCurve> getCubCurves() {
+        return
+    }
+
     private void calculatePositionOffset() {
 
     }

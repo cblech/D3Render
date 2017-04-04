@@ -57,7 +57,9 @@ public class Game {
 //  Add scene action over time
 //  action will perform every 1/60 second
     private void onTick() {
-
+        curvyCube.addXrot(.02);
+        curvyCube.addYrot(.025);
+        curvyCube.addZrot(.01);
 //        d3v.addYrot(-.04);
 //        d3p.addYrot(-.07);
 //        d3p.addZrot(-.01);
