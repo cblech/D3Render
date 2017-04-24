@@ -48,14 +48,20 @@ public class D3Graphics {
     }
 
     public void draw3dObjekt(D3Objekt d) {
-        for (D3line d3line : d.getLines()) {
-            drawPerspLine(d3line);
+        if (d.getLines() != null) {
+            for (D3line d3line : d.getLines()) {
+                drawPerspLine(d3line);
+            }
         }
-        for (D3CubCurve cubCurve : d.getCubCurves()) {
-            drawPerspCubCurve(cubCurve);
+        if (d.getCubCurves() != null) {
+            for (D3CubCurve cubCurve : d.getCubCurves()) {
+                drawPerspCubCurve(cubCurve);
+            }
         }
-        for (D3QuadCurve quadCurve : d.getQuadCurves()) {
-            drawPerspQuadCurve(quadCurve);
+        if (d.getQuadCurves() != null) {
+            for (D3QuadCurve quadCurve : d.getQuadCurves()) {
+                drawPerspQuadCurve(quadCurve);
+            }
         }
     }
 

@@ -36,7 +36,7 @@ public class Game {
 
 //  Add objekt to drawlist
     private void onSteup() {
-            objekts.add(curvyCube);
+        objekts.add(curvyCube);
 //        objekts.add(d3j);
 //        objekts.add(d3c);
 //        worldObjekt.addObjekt(std3v);
@@ -75,8 +75,7 @@ public class Game {
     public static D3Camera usedCam;
     ArrayList<D3Objekt> objekts = new ArrayList<>();
     D3StaticWorldObjekt worldObjekt = new D3StaticWorldObjekt();
-    
-    
+
     RenderPannel rp;
 
     public Game(RenderPannel rp) {
@@ -129,10 +128,6 @@ public class Game {
 
                 rp.repaint();
 
-                //fps counter
-                rp.fps = (int) (1000.0 / ((LastFrameTemp - LastFrameTime) + 0.0000001));
-                LastFrameTime = LastFrameTemp;
-
                 //debug
                 if (rp.jf.db != null) {
                     rp.jf.db.setFps(rp.fps);
@@ -140,6 +135,10 @@ public class Game {
                     rp.jf.db.setRight(rp.jf.km.pressedRightKey);
                     rp.jf.db.setLeft(rp.jf.km.pressedLeftKey);
                 }
+
+                //fps counter
+                rp.fps = (int) (1000.0 / ((LastFrameTemp - LastFrameTime) + 0.0000001));
+                LastFrameTime = LastFrameTemp;
 
                 //sleeper
                 try {

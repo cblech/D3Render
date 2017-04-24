@@ -7,6 +7,7 @@ package tools;
 
 import game.KeyMapper;
 import graphic.RenderPannel;
+import javax.swing.JButton;
 
 /**
  *
@@ -19,10 +20,12 @@ public class MyFrame extends javax.swing.JFrame {
     RenderPannel rp = new RenderPannel(this);
     int width = 1600;
     int height = 800;
+    final boolean editor;
 
     boolean debugging = true;
 
-    public MyFrame() {
+    public MyFrame(boolean editor) {
+        this.editor = editor;
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
          * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
@@ -54,9 +57,17 @@ public class MyFrame extends javax.swing.JFrame {
         initComponents();
         add(rp);
         setResizable(false);
-        setSize(width, height + 26);
-        setLocationRelativeTo(null);
-        rp.setBounds(0, 0, width, height);
+        if (editor) {
+            setSize(width + 80, height + 26);
+            setLocationRelativeTo(null);
+            rp.setBounds(80, 0, width, height);
+            addEditorTools();
+        } else {
+            setSize(width, height + 26);
+            setLocationRelativeTo(null);
+            rp.setBounds(0, 0, width, height);
+        }
+
         addKeyListener(km);
     }
 
@@ -79,6 +90,21 @@ public class MyFrame extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void addEditorTools() {
+        edtAddPoint = new JButton("+ Point");
+        add(edtAddPoint);
+        edtAddPoint.setBounds(0, 0, 80, 40);
+        
+        edtMkLine = new JButton("+ Line");
+        add(edtMkLine);
+        edtMkLine.setBounds(0, 40, 80, 40);
+        
+        
+    }
+
+    JButton edtAddPoint;
+    JButton edtMkLine;
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     // End of variables declaration//GEN-END:variables

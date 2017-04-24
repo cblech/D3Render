@@ -213,7 +213,7 @@ public class D3Objekt {
                     System.out.println("point: " + tcn.start + " does not exist.");
                 } else if (cont1 == null) {
                     System.out.println("point: " + tcn.cont1 + " does not exist.");
-                } else if (cont2 == null) {
+                } else if (cont2 == null && tcn.cont2 != null) {
                     System.out.println("point: " + tcn.cont2 + " does not exist.");
                 } else if (end == null) {
                     System.out.println("point: " + tcn.end + " does not exist.");
@@ -242,6 +242,7 @@ public class D3Objekt {
     public ArrayList<D3CubCurve> getCubCurves() {
         return null;
     }
+
     public ArrayList<D3QuadCurve> getQuadCurves() {
         return null;
     }
@@ -279,5 +280,4 @@ public class D3Objekt {
 
         return point;
     }
-
 }

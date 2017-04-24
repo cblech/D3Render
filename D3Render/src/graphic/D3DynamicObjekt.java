@@ -11,6 +11,9 @@ import utils.Vec2;
 import java.util.ArrayList;
 import java.util.Scanner;
 import utils.D3CubCurve;
+import utils.D3QuadCurve;
+import utils.Vec3;
+import utils.Vec4;
 
 /**
  *
@@ -102,7 +105,46 @@ public class D3DynamicObjekt extends D3Objekt {
 
     @Override
     public ArrayList<D3CubCurve> getCubCurves() {
-        return
+        ArrayList<D3CubCurve> displayedCurves = new ArrayList<>();
+        ArrayList<D3vec> displayedPoints = new ArrayList<>();
+
+        for (D3vec point : points) {
+            displayedPoints.add(calculateRotationOffset(point));
+        }
+
+        for (D3vec displayedPoint : displayedPoints) {
+            displayedPoint.x += positoin.x;
+            displayedPoint.y += positoin.y;
+            displayedPoint.z += positoin.z;
+        }
+
+        for (Vec4 cubCurve : cubCurves) {
+            displayedCurves.add(new D3CubCurve(displayedPoints.get(cubCurve.a), displayedPoints.get(cubCurve.b),displayedPoints.get(cubCurve.c),displayedPoints.get(cubCurve.d)));
+        }
+
+        return displayedCurves;
+    }
+    
+    @Override
+    public ArrayList<D3QuadCurve> getQuadCurves(){
+        ArrayList<D3QuadCurve> displayedCurves = new ArrayList<>();
+        ArrayList<D3vec> displayedPoints = new ArrayList<>();
+
+        for (D3vec point : points) {
+            displayedPoints.add(calculateRotationOffset(point));
+        }
+
+        for (D3vec displayedPoint : displayedPoints) {
+            displayedPoint.x += positoin.x;
+            displayedPoint.y += positoin.y;
+            displayedPoint.z += positoin.z;
+        }
+
+        for (Vec3 quadCurve : quadCurves) {
+            displayedCurves.add(new D3QuadCurve(displayedPoints.get(quadCurve.a), displayedPoints.get(quadCurve.b),displayedPoints.get(quadCurve.c)));
+        }
+
+        return displayedCurves;
     }
 
     private void calculatePositionOffset() {
