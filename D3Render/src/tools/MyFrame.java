@@ -15,17 +15,19 @@ import javax.swing.JButton;
  */
 public class MyFrame extends javax.swing.JFrame {
 
-    public KeyMapper km = new KeyMapper();
+    public KeyMapper km;
     public Debugger db;
-    RenderPannel rp = new RenderPannel(this);
+    RenderPannel rp;
     int width = 1600;
     int height = 800;
     final boolean editor;
 
-    boolean debugging = true;
+    boolean debugging = false;
 
     public MyFrame(boolean editor) {
         this.editor = editor;
+        km = new KeyMapper();
+        rp = new RenderPannel(this, editor);
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
          * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
@@ -58,7 +60,7 @@ public class MyFrame extends javax.swing.JFrame {
         add(rp);
         setResizable(false);
         if (editor) {
-            setSize(width + 80, height + 26);
+            setSize(width + 80, height + 26 + 60);
             setLocationRelativeTo(null);
             rp.setBounds(80, 0, width, height);
             addEditorTools();
@@ -95,14 +97,16 @@ public class MyFrame extends javax.swing.JFrame {
         edtAddPoint = new JButton("+ Point");
         add(edtAddPoint);
         edtAddPoint.setBounds(0, 0, 80, 40);
-        
+
         edtMkLine = new JButton("+ Line");
         add(edtMkLine);
         edtMkLine.setBounds(0, 40, 80, 40);
         
         
-    }
 
+    }
+    
+    
     JButton edtAddPoint;
     JButton edtMkLine;
 

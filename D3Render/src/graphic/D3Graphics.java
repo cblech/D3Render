@@ -5,6 +5,7 @@
  */
 package graphic;
 
+import editor.Editor;
 import utils.D3line;
 import game.Game;
 import utils.D3CubCurve;
@@ -30,7 +31,11 @@ public class D3Graphics {
 
     public D3Graphics(NormalisedGraphics ng) {
         this.ng = ng;
-        cm = Game.usedCam;
+        if (Game.usedCam != null) {
+            cm = Game.usedCam;
+        } else {
+            cm = Editor.usedCam;
+        }
     }
 
     public static void setCammeraZPos(double cammeraZPos) {
